@@ -10,12 +10,16 @@ const usersRouter = require('./routes/users');
 const app = express();
 const port = process.env.PORT || 3000;
 
+app.get('/', (req, res) => {
+  res.render('../src/index.js', {});
+});
+
 app.use(cors());
 app.use(express.json());
 app.use('/exercises', exercisesRouter);
 app.use('/users', usersRouter);
 
-const uri = process.env.ATLAS_URI;
+// const uri = process.env.ATLAS_URI;
 mongoose.connect(atlas);
 const connection = mongoose.connection;
 connection.once('open', () => {
